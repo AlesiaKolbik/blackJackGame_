@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Black Jack Game</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		html, body,.wrapper {
+			width: 100%;
+			height: 100%;
+		}
+
+		.wrapper {
+			background: black;
+			padding: 3% 0;
+		}
+
+		.container {
+			width: 100%;
+			height: 100%;
+			margin: auto;
+			background: forestgreen;
+			padding-top: 100px;
+		}
+
+		.game_field {
+			margin:auto;
+			/*background: white;*/
+			width: 50%;
+			height: 294px;
+			display: flex;
+			justify-content: center;
+		}
+
+		.card{
+			width: 171px;
+			height: 249px;
+			border-radius: 10px;
+			border: solid 2px yellow;
+			background-image: url("https://www.nashpoker.net/alldata/images/kolichestvo_kart_v_pokernoy_kolode.png");
+			background-position: 0 0;
+			margin-left: -13px;
+		}
+
+		.card:last-child{
+			flex-shrink: 0;
+		}
+
+		.game_display{
+			position: absolute;
+			bottom: 5%;
+			left:0;
+			width: 500px;
+			height: 200px;
+			background: rgba(0, 0, 0, 0.42);
+			color:white;
+			font-size: 20px;
+			text-transform: uppercase;
+		}
+
+		.gritting{
+			padding: 10px;
+			text-align:center;
+		}
+
+		.game_score {
+			text-align: center;
+			display: none;
+		}
+
+		.user_score{
+			font-size: 30px;
+			color:yellow;
+		}
+
+		.game_buttons{
+			position: absolute;
+			bottom: 3px;
+			left: 0;
+			width: 100%;
+			display: flex;
+			justify-content: space-around;
+			height: 80px;
+			align-items: center;
+		}
+		.game_buttons button{
+			display: inline-block;
+			border: solid 1px #8BC34A;
+			border-radius: 4px;
+			background: url('https://i.pinimg.com/736x/85/a3/5e/85a35ea1ce49cfcc34089f6b00526796.jpg') no-repeat 0 100% /cover;
+			padding: 10px 0;
+			color: white;
+			font-size: 25px;
+			width: 144px;
+			outline: none;
+		}
+
+		.game_buttons button:hover {
+			background-position: 0 70%;
+		}
+
+		.game_buttons button:active {
+			background-position: 0 50%;
+			color: green;
+		}
+
+		.alert_wrapper {
+			position: fixed;
+			top:0;
+			bottom: 0;
+			left:0;
+			right: 0;
+			background: rgba(139, 195, 74, 0.58);
+			display: none;
+		}
+
+		.alert {
+			width: 400px;
+			height: 250px;
+			border-radius: 20px;
+			background: white;
+			position: absolute;
+			left: calc(50% - 200px);
+			top: calc(50% - 200px);
+			border: outset 8px #895e91;
+		}
+
+		.alert_message {
+			text-transform: uppercase;
+			font-size: 35px;
+			text-align: left;
+			padding: 40px 20px;
+		}
+		.alert_message small {
+			display: block;
+			margin-top: 20px;
+			color: #88587c;
+		}
+
+		#hit, #pass{
+			display: none;
+		}
+
+		.input_field {
+			position: fixed;
+			font-size: 25px;
+			color:white;
+			display: none;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			background: #6b686878;
+		}
+
+		.input_field form {
+			top: 45%;
+			left:calc(50% - 100px);
+			width: 280px;
+			height: 60px;
+			position: absolute;
+		}
+
+		.input_field input {
+			display: inline-block;
+			width: 200px;
+			height: 40px;
+			outline: none;
+		}
+		.input_field button {
+			padding: 12px;
+			border: 0;
+			background: #f3f2eb85;
+			color: #07650b;
+		}
+		#user_game_field{
+			position: relative;
+			margin-top: 200px;
+		}
+
+		.user_name{
+			position: absolute;
+			bottom: 0;
+			color:white;
+			font-size: 30px;
+			text-align: center;
+		}
+
+
+
+	</style>
+</head>
+<body>
+<div class="wrapper">
+	<div class="container">
+		<div class="game_field" id="partner_game_field"></div>
+		<div class="game_field" id="user_game_field"></div>
+		<div class="game_display">
+			<h2 class="gritting">Welcome to BlackJack!</h2>
+			<div class="game_score" id="user_game_score">Your score: <span class="user_score" id="user_score">21</span></div>
+			<div class="game_score" id="partner_game_score">Partner score: <span class="user_score" id="partner_score">21</span></div>
+			<div class="game_buttons">
+				<button id="game">New Game!</button>
+				<button id="hit">Hit</button>
+				<button id="pass">Pass</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="alert_wrapper" id="alert">
+	<div class="alert" onclick="document.getElementById('alert').style.display='none';">
+		<h1 class="alert_message" id="modal_window">You won!</h1>
+	</div>
+</div>
+<div class="input_field" id="input_field_block">
+	<form>
+		<label>Введите Ваше имя: <input type="text" id="input_field" maxlength="10"></label>
+		<button id="input_field_btn">OK</button>
+	</form>
+</div>
+<script src="js_game.js"></script>
+</body>
+</html>
